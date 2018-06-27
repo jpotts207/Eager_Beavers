@@ -31,7 +31,7 @@ $error = '';
         </div>
     </div>
     <div id="container" class="row-md-2 form-group">
-        <form action="logon.php" method="post" >
+        <form action="login.php" method="post" >
             <div class="form-group">
             <fieldset name ="LOGIN">
                 <table class="table-borderless" align="center">

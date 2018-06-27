@@ -11,6 +11,9 @@ spl_autoload_register();
 
 $error='';
 $result = '';
+$log = new login();
+echo $log->login();
+
 
 class login {
 
@@ -28,33 +31,30 @@ class login {
     public function login(){
 
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
 
         $username = stripcslashes($username);
         $password = stripcslashes($password);
-
-        $username = mysqli_real_escape_string($username);
-        $password = mysqli_real_escape_string($password);
 
         try{
             $connection =  new PDO($this->dsn, $this->user, $this->pass);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $query = mysqli_query($connection, "SELECT * FROM Users where email='$username' and password ='$password'");
+            $query = $connection->prepare("SELECT * FROM Users WHERE email = ? AND password = ?");
             $query->setFetchMode(PDO::FETCH_CLASS, 'User');
-            $query->execute();
+            $query->execute(array($username, $password));
+            $result = $query->fetch();
 
-            $rows = mysqli_num_rows($query);
-            if ($rows == 1){
+            if ($result !== false){
                 $error = 'login success';
             } else {
                 $error = 'login fail';
             }
             return($error);
-            mysqli_close($connection);
         }
         catch (PDOException $e){
             die(print_r($e));
+
         }
     }
 }
