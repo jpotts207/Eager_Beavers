@@ -8,6 +8,10 @@
  */
 class Group
 {
+    const AS_GROUPS = 1;
+    const AS_PROPERTY = 2;
+    const AS_GROUP_IDS = 3;
+
     protected $Id;
     protected $name;
     protected $members;
@@ -26,26 +30,48 @@ class Group
     }
 
     /**
-     * @return array of User Ids
+     * @return array of Users
      */
-    public function getMembers(){
-        $db = new DatabaseContext();
-        $membersArray = array();
-        $this->members = explode(",",$this->members);
+    public function getMembers($value){
+        switch($value){
+            case User::AS_USERS:
+                $db = new DatabaseContext();
+                $membersArray = array();
+                $this->members = explode(",",$this->members);
 
-        foreach($this->members as $member){
-            $membersArray[] = $db->getUser($member);
+                foreach($this->members as $member){
+                    $membersArray[] = $db->getUser($member);
+                }
+                return $membersArray;
+                break;
+            case User::AS_PROPERTY:
+                return $this->members;
+                break;
+            case User::AS_USER_IDS:
+                return explode(",", $this->members);
+                break;
         }
-        return $membersArray;
     }
 
-    /**
-     * @param $id
-     * id = the id of a User
-     */
     public function addMember($id){
         $this->members = $this->members.",".$id;
     }
 
+    public function removeMember($id){
+        $a = $this->getMembers(User::AS_USER_IDS);
+        $temp_a = '';
+        $firstEntree = true;
+        foreach($a as $t_a){
+            if($t_a != $id) {
+                if($firstEntree){
+                    $temp_a = $t_a;
+                    $firstEntree = false;
+                }else {
+                    $temp_a = $temp_a . "," . $t_a;
+                }
+            }
+        }
+        $this->members = $temp_a;
+    }
 }
 ?>

@@ -1,0 +1,42 @@
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+    /*position : fixed;*/
+    bottom : 0px;
+    width : 100%;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {height:auto;}
+}
+body{
+    background-color: #ccc;
+    //background-image: url("blackOnWhite.jpg");
+    background-size: auto;
+}
+
+#container {
+    margin: 0 25% 0 25%;
+    padding: 25px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15px;
+    background-color: aliceblue;
+}
