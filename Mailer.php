@@ -48,8 +48,8 @@ class Mailer
     private function send($to, $subject, $body){
         $from = "notifications@eagerbeavers.com";
         $host = "smtp.sendgrid.net";
-        $username="azure_6168549264ab6d4f7b493534f0ea61f4@azure.com";
-        $password="Bits2018!";
+        $username="<username>";
+        $password="<password>";
         $headers = array('From' =>$from,'To' => $to, 'Subject' =>$subject);
         $smtp = Mail::factory('smtp', array('host'=>$host, 'auth'=>true, 'username'=>$username, 'password'=> $password));
         $mail = $smtp->send($to, $headers, $body);
