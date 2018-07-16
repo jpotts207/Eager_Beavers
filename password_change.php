@@ -33,7 +33,7 @@ else if(isset($_SESSION["Authenticated"])){
 
     echo "<script type='text/javascript'>",
     "alert('password changed successfully');",
-    "window.location = 'index.php?page=home';",
+    "window.location.href = 'index.php?page=home';",
     "</script>";
 }
 else{

@@ -21,5 +21,5 @@ $db->updateUser($user);
 
 echo '<script type="text/javascript">',
     'alert("Friend Added");',
-    'window.location("index.php?page=friends");',
+    'window.location.href="index.php?page=friends";',
     '</script>';

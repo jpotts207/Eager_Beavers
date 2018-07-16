@@ -29,12 +29,12 @@ if($user !== false) {
     $_SESSION["Authenticated"] = $user->getId();
     echo '<script type="text/javascript">',
     'alert("logged in Successfully.");',        //notify the user that they've logged in successfully
-    'window.location("index.php?page=home")',   //redirct to home
+    'window.location.href = "index.php?page=home"',   //redirct to home
     '</script>';
 }else{
     $_SESSION["Authenticated"] = false;         //set authenticated to false for use on other pages
     echo '<script type="text/javascript">',
         'alert("login failed.\nCheck email and password.");',   //notify user of failure
-        'window.location("index.php?page=home")',               //redirect to home
+        'window.location.href = "index.php?page=home"',               //redirect to home
         '</script>';
 }
