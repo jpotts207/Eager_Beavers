@@ -7,13 +7,25 @@
  */
 
 $temp_user = false;
+$user = new User();
+$id = "not set";
+
 if(isset($_SESSION["temp_user"])){
     $temp_user = true;
+    $id = $_SESSION["temp_user"];
 }
-else
+
+if(isset($_SESSION["Authenticated"])) {
+    if ($_SESSION["Authenticated"] != false) {
+        $authenticated = true;
+        $id = $_SESSION["Authenticated"];
+        $user = $db->getUser($id);
+    }
+}
+
 ?>
 <div id="container" class="row-md-2 form-group">
-    <h1>Reset Password</h1>
+    <?php echo '<h1>Reset Password for:'.$user->getEmail($id). '</h1>' ?>
     <form action="password_change.php" method="post" >
         <div class="form-group">
             <fieldset name ="CHANGE">

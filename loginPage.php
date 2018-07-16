@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Tapra
+ * User: Tapra/Daniel Bratton
  * Date: 26/6/18
  * Time: 12:20
  */
@@ -42,7 +42,8 @@
             </div>
         </form>
     </div>
-<!-- Modal -->
+
+<!-- Modal requesting input from user (email)-->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 

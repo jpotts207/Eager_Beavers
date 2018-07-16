@@ -86,7 +86,7 @@ class User
                 $db = new DatabaseContext();
 
                 foreach($friends as $friend) {
-                    $friendArray[] = $db->getPerson($friend);
+                    $friendArray[] = $db->getUser($friend);
                 }
                 return $friendArray;
                 break;
@@ -123,7 +123,16 @@ class User
     //eg "2,5,16".  Each number is the Id of another User.
     //So we just need to append the end of the friends with "," + $id
     public function addFriend($id){
-        $this->friends = $this->friends.",".$id;
+        $friends = $this->getFriends(User::AS_USER_IDS);
+        $exists = false;
+        foreach($friends as $friend){
+            if($id === $friend){
+                $exists = true;
+            }
+        }
+        if(!$exists) {
+            $this->friends = $this->friends . "," . $id;
+        }
     }
     public function addGroup($id){
         $this->groups = $this->groups.",".$id;

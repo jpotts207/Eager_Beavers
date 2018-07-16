@@ -15,3 +15,11 @@ function checkPasswordsMatch(input)
         input.setCustomValidity('');
     }
 }
+
+function confirmPasswordChange(){
+    alert("Password changed successfully");
+}
+
+function gotoFriends(){
+    window.location = 'index.php?page=friends';
+}

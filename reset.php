@@ -12,5 +12,5 @@ spl_autoload_register();
 
 $email= $_POST['email'];
 Mailer::sendPasswordReset($email);
-header("location: index.php?");
+header("location: index.php");
 ?>

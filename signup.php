@@ -10,8 +10,7 @@ session_start();
 spl_autoload_extensions('.php');
 spl_autoload_register();
 
-//$redirect = "location: ";
-$redirect = "location: https://eagerbeavers.azurewebsites.net/";
+$redirect = "location: index.php?page=home";
 
 $email = $_POST['email'];
 $password = ($_POST['password']);
@@ -38,7 +37,6 @@ if($new_user === false){
     $_SESSION["Message"] = "New user created";
     //email user
     Mailer::sendWelcome($new_user);
-
 
 }
 else{

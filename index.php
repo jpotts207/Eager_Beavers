@@ -27,8 +27,6 @@ if(isset($_GET["page"])) {
 else {
     $page_content = "home.php";
 }
-
-
 include ('master.php');
 
 

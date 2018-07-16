@@ -8,7 +8,7 @@
 session_start();
 spl_autoload_extensions('.php');
 spl_autoload_register();
-$redirect = "location: /";
+$redirect = "location: index.php?page=home";
 
 $email = $_GET["u"];
 $password = $_GET["p"];
@@ -24,7 +24,6 @@ foreach($users as $user){
         $registered_user = $user;
     }
 }
-echo var_dump($registered_user);
 
 if($registered_user !== false) {
     $_SESSION["temp_user"] = $registered_user->getId();
