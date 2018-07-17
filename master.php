@@ -26,8 +26,7 @@ $db = new DatabaseContext();
         <script src="scripts/scripts.js" type="text/javascript"></script>
 
     </head>
-    <body>
-
+    <body style='background-image: url("bg.png")'>
         <?php
             if($page_content === null){
                 $page_content = "oops.php";
@@ -36,7 +35,8 @@ $db = new DatabaseContext();
             echo '<div class="container body-content">';
                 include($page_content);
             echo '</div>';
+            if($page_content !== 'friends.php')
+                include ('footer.php');
         ?>
-
     </body>
 </html>

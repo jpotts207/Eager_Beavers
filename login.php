@@ -29,7 +29,7 @@ if($user !== false) {
     $_SESSION["Authenticated"] = $user->getId();
     echo '<script type="text/javascript">',
     'alert("logged in Successfully.");',        //notify the user that they've logged in successfully
-    'window.location.href = "index.php?page=home"',   //redirct to home
+    'window.location.href = "index.php?page=home"',   //redirct to home (or calendar??)
     '</script>';
 }else{
     $_SESSION["Authenticated"] = false;         //set authenticated to false for use on other pages

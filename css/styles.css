@@ -1,12 +1,37 @@
 body {
+    background-attachment: fixed;
     padding-top: 50px;
     padding-bottom: 20px;
+}
+
+p {
+    text-align: center;
+}
+
+footer {
+    border-style: groove;
+    border-radius: 5px;
+    background-color: #555;
+    color: white;
+    padding: 15px;
+    position : fixed;
+    bottom : 0px;
+    width : 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+#container {
+    margin: 0 25% 0 25%;
+    padding: 25px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15px;
+    background-color: #eef;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
