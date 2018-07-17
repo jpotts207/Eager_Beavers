@@ -30,9 +30,9 @@ if(isset($_SESSION["Authenticated"])){
     <h1>Friends</h1>
     <form action="search_friend.php" method="post">
         <div class="form-group">
-            <label for="search">Find Friend (via email)</label>
+            <label for="search">Find Friend (via email): </label>
             <input name="search" id="search" type="text" size ="50"/>
-            <button type="submit">Search</button>
+            <button class="btn btn-primary" type="submit">Search</button>
         </div>
     </form>
 </div>

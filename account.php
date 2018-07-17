@@ -34,5 +34,5 @@ if(isset($_SESSION["Authenticated"])){
     echo '<p> First Name : '. $user->getFirstName($id).'</p>';
     echo '<p> Surname : '. $user->getSecondName($id).'</p>';
 ?>
-<a href="?page=change_password"><button class="btn btn-default">Change Password</button></a>
+<a href="?page=change_password"><button class="btn btn-primary">Change Password</button></a>
 </div>

@@ -10,8 +10,8 @@ p {
 
 footer {
     border-style: groove;
-    border-radius: 5px;
-    background-color: #555;
+    border-radius: 15px;
+    background-color: #aaa;
     color: white;
     padding: 15px;
     position : fixed;
