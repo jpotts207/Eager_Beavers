@@ -5,6 +5,11 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     font-family : "Comic Sans MS";
+	/* Added background imagery scaled to user page */
+	background-image: url("images/backgrounds/whiteOnGrey.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: cover;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -50,8 +55,18 @@ listpanel{
 }
 
 div{
+	/* Set additional padding to stop text from hitting edges */
+	padding-left : 10px;
+	padding-right : 10px;
+	padding-top : 10px;
+	padding-bottom : 10px;
     border-radius : 5px;
 }
 
+h1 {
+	/* Styling header text for each page to match design */
+	color : #FF9B00;
+	text-shadow : 2px 2px #000000;
+}
 
 

@@ -37,6 +37,8 @@ if(!$authenticated){
 <div class="panel panel-default">
     <div class="panel-body">
         <h1>Events</h1>
+		<h5>Here you may view all of your current and attending events. 
+		Events you have not confirmed will not appear here. </h5>
     </div>
 </div>
 <div class="beaverList">
@@ -171,4 +173,12 @@ if(!$authenticated){
         </div>
         </form>
     </div>
+</div>
+<div>
+<h6 class = "footer"> Plan It is an group based project taking place in 2018.<br>
+To view licensing related to the project, please 
+<a href="C:/Users/jordan/Downloads/Eager_Beavers-master/Eager_Beavers-master/LICENSE">click here</a>
+, or follow these links to view our 
+<a href=>Privacy Policy</a> and 
+<a href=>Terms of Use</a>.</h6>
 </div>
