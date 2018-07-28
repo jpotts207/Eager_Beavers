@@ -16,6 +16,8 @@ class Event
     protected $title;
     protected $location;
     protected $attendees;
+    protected $time;
+    protected $date;
 
     public function getId(){
         return $this->Id;
@@ -34,6 +36,19 @@ class Event
     }
     public function setLocation($value){
         $this->location = $value;
+    }
+    public function getTime(){
+        return $this->time;
+    }
+    public function setTime($value){
+        $this->time = $value;
+    }
+
+    public function getDate(){
+        return $this->date;
+    }
+    public function setDate($value){
+        $this->date = $value;
     }
 
     /**

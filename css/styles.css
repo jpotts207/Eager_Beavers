@@ -1,37 +1,16 @@
+html{
+
+}
 body {
-    background-attachment: fixed;
     padding-top: 50px;
     padding-bottom: 20px;
-}
-
-p {
-    text-align: center;
-}
-
-footer {
-    border-style: groove;
-    border-radius: 15px;
-    background-color: #aaa;
-    color: white;
-    padding: 15px;
-    position : fixed;
-    bottom : 0px;
-    width : 100%;
+    font-family : "Comic Sans MS";
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
-
-#container {
-    margin: 0 25% 0 25%;
-    padding: 25px;
-    border-style: solid;
-    border-color: black;
-    border-radius: 15px;
-    background-color: #eef;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -45,5 +24,34 @@ footer {
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
+listpanel{
+    cursor : pointer;
+}
+
+.beaverList{
+    background-color : lightgrey;
+    margin-left : 5%;
+    margin-right : 5%;
+}
+.beaverLogin{
+    background-color : lightgrey;
+    margin-left : 25%;
+    margin-right : 25%;
+    padding-top : 5%;
+    padding-bottom : 5%;
+}
+.panel-body{
+    background-color : darkgrey;
+}
+.addButton{
+    margin : 45%;
+}
+
+div{
+    border-radius : 5px;
+}
+
+
+

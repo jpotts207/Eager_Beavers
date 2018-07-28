@@ -152,17 +152,19 @@ class DatabaseContext
             die(print_r($e));
         }
     }
-    public function addGroup($group, $id){
+    public function addGroup($group){
         try {
             $connection = new PDO($this->dsn, $this->username, $this->password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $statement =  $connection->prepare("INSERT INTO Groups (name, members)
-                      VALUES (:gname, :creator )");
+            $statement =  $connection->prepare("INSERT INTO Groups (name)
+                      VALUES (:gname )");
                 $statement->execute(array(
-                    "gname" => $group->getName(),
-                        "creator" => $id)
+                    "gname" => $group->getName()
+                    )
             );
+
+            return $connection->lastInsertId();
         }
         catch(PDOException $e){
             print("Error connecting to SQL Server.");
@@ -265,6 +267,20 @@ class DatabaseContext
                 $group->getMembers(Group::AS_PROPERTY),
                 $group->getID()
             ));
+        }
+        catch(PDOException $e){
+            print("Error connecting to SQL Server.");
+            die(print_r($e));
+        }
+    }
+
+    public function deleteGroup($id){
+        try {
+            $connection = new PDO($this->dsn, $this->username, $this->password);
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $statement = $connection->prepare("DELETE FROM Groups WHERE Id = ?");
+            $statement->execute([$id]);
         }
         catch(PDOException $e){
             print("Error connecting to SQL Server.");

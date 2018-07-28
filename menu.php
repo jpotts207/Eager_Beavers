@@ -34,7 +34,7 @@ if(isset($_SESSION["Authenticated"])){
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><img src="images/logo1.png" height="25" alt="Plan !T"></a>
+            <a class="navbar-brand" href="index.php"><img src="images/logo1.png" height="25" alt="Plan !T"/></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -55,16 +55,15 @@ if(isset($_SESSION["Authenticated"])){
                 <?php
                 /* display login for logged out users, and logout for logged in users - got it? */
                 if($authenticated === true){
-                    echo "<li><a class='content'>Welcome ".$user->getFirstName()."</a>",
-                        "<li><a href='?page=logout'><span class='glyphicon glyphicon-log-in'></span> Logout</a></li>";
+                    echo "<li><a class='content'>Welcome ".$user->getFirstName()."</a></li>",
+                        "<li><a href='index.php?page=logout'><span class='glyphicon glyphicon-log-in'></span> Logout</a></li>";
                 }
                 else{
-                    echo "<li><a href='?page=loginPage'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>";
+                    echo "<li><a href='index.php?page=loginPage'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>";
                 }
                 ?>
             </ul>
         </div>
-
     </div>
 </div>
 

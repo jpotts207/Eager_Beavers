@@ -32,17 +32,17 @@ include("menu.php");
     <div class="container-fluid" id="container">
     <?php
     if($friend){
-        echo '<form><h4>We found the following user with that email:</h4>',
+        echo '<div><h4>We found the following user with that email:</h4>',
         '<div class="panel panel-default">',
             '<p> email: ' . $friend->getEmail() . '</p>',
             '<p> First Name : ' . $friend->getFirstName() . '</p>',
             '<p> Surname : ' . $friend->getSecondName() . '</p>',
-            '<div class="btn-group-justified">',
+            '<div class="btn-group">',
                 '<a href ="add_friend.php?id='.$friend->getId().'" class="btn btn-success" >Add</a>',
-                '<button type="button" class="btn btn-danger" onclick="gotoFriends()" >Cancel</button>',
+                '<button type="button" class="btn btn-danger" onclick="gotoFriends()">Cancel</button>',
             '</div>',
         '</div>',
-        '</form>';
+        '</div>';
     }else{
         echo '<script type="text/javascript">',
             'alert("No user could be found with that email");',

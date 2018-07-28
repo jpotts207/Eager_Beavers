@@ -7,8 +7,13 @@
  */
 
 ?>
-    <div id="container" class="row-md-2 form-group">
-        <h1>Log in</h1>
+    <div class="panel panel-default">
+        <div class="panel-body beaver">
+            <h1>Log in</h1>
+        </div>
+    </div>
+    <div id="container">
+        <div class="beaverLogin">
         <form action="login.php" method="post" >
             <div class="form-group">
             <fieldset name ="LOGIN">
@@ -33,7 +38,7 @@
                         <td>
                             <div class="btn-group btn-group-md">
                                 <button type="submit" class="btn btn-primary">login</button>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Reset Password</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resetModal">Reset Password</button>
                             </div>
                         </td>
                     </tr>
@@ -41,10 +46,11 @@
             </fieldset>
             </div>
         </form>
+        </div>
     </div>
 
 <!-- Modal requesting input from user (email)-->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="resetModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->

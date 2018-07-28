@@ -6,7 +6,7 @@
  * Date: 24/06/2018
  * Time: 10:19 AM
  */
-class Group
+class Group implements \JsonSerializable
 {
     const AS_GROUPS = 1;
     const AS_PROPERTY = 2;
@@ -37,9 +37,9 @@ class Group
             case User::AS_USERS:
                 $db = new DatabaseContext();
                 $membersArray = array();
-                $this->members = explode(",",$this->members);
+                $members = explode(",", $this->members);
 
-                foreach($this->members as $member){
+                foreach($members as $member){
                     $membersArray[] = $db->getUser($member);
                 }
                 return $membersArray;
@@ -49,12 +49,27 @@ class Group
                 break;
             case User::AS_USER_IDS:
                 return explode(",", $this->members);
-                break;
         }
     }
 
     public function addMember($id){
-        $this->members = $this->members.",".$id;
+        $members =  $this->getMembers(User::AS_USER_IDS);
+        $exists = false;
+        foreach($members as $member){
+            if($id === $member){
+                $exists = true;
+            }
+        }
+        if(!$exists){
+            if($members[0] === ""){
+                $this->members = $this->members. $id;
+            }
+            else{
+                $this->members = $this->members.",".$id;
+            }
+        }
+
+
     }
 
     public function removeMember($id){
@@ -73,5 +88,15 @@ class Group
         }
         $this->members = $temp_a;
     }
+
+    public function resetMembers(){
+        $this->members = "";
+    }
+
+    public function jsonSerialize(){
+        $vars = get_object_vars($this);
+        return $vars;
+    }
+
 }
 ?>

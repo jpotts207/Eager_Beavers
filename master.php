@@ -23,11 +23,11 @@ $db = new DatabaseContext();
         <link rel="stylesheet" href="css/styles.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AtdWg-nCcD8mwIW4rRQaq16bWW2DX71YiNF5pLIy5YdgMWdrAzEVMeIVrLZdS6cS'></script>
         <script src="scripts/scripts.js" type="text/javascript"></script>
-
     </head>
-    <body style='background-image: url("bg.png")'>
-        <?php
+    <body>
+    <?php
             if($page_content === null){
                 $page_content = "oops.php";
             }
@@ -35,8 +35,6 @@ $db = new DatabaseContext();
             echo '<div class="container body-content">';
                 include($page_content);
             echo '</div>';
-            if($page_content !== 'friends.php')
-                include ('footer.php');
         ?>
     </body>
 </html>

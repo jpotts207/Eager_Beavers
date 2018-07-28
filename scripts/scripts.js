@@ -21,5 +21,57 @@ function confirmPasswordChange(){
 }
 
 function gotoFriends(){
-    window.location = 'index.php?page=friends';
+    window.location.href = "index.php?page=friends";
 }
+function gotoHome(){
+    window.location.href = "index.php?page=Home";
+}
+function gotoLogin(){
+    window.location.href = "index.php?page=loginPage";
+}
+
+var map;
+function loadMapScenario() {
+
+    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        zoom : 11
+    });
+}
+
+function SearchMap(address) {
+    Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+        var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+        var requestOptions = {
+            bounds: map.getBounds(),
+            where: address,
+            callback: function (answer, userData) {
+                map.setView({ bounds: answer.results[0].bestView });
+                map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
+            }
+        };
+        searchManager.geocode(requestOptions);
+    });
+}
+
+function findAddress(){
+    var address = $("#mapSearchBox").val();
+    SearchMap(address);
+}
+
+$(document).ready(function(){
+    $("#addEventModal").on("shown.bs.modal", function(event){
+        loadMapScenario();
+    });
+
+    $(window).keydown(function(event){
+        //alert("here" + event.KeyCode);
+        if(event.keyCode == 13){
+            event.preventDefault();
+            return false;
+        }
+    });
+});
+
+
+
+

@@ -6,7 +6,7 @@
  * Date: 16/06/2018
  * Time: 8:22 PM
  */
-class User
+class User implements \JsonSerializable
 {
     /*constants for the getFriends(), getGroups(), getEvents() functions.
      * The constant determines whether we're to return User objects, User Ids, or
@@ -98,6 +98,17 @@ class User
                 break;
         }
     }
+    public function isFriend($id){
+        //just returns true if friend already in list, false otherwise
+        $isFriend = false;
+        $friends = $this->getFriends(User::AS_USER_IDS);
+        foreach($friends as $friend){
+            if($friend === $id){
+                $isFriend = true;
+            }
+        }
+        return $isFriend;
+    }
     public function getEvents($value){
         switch($value){
             case Event::AS_EVENTS:
@@ -131,11 +142,30 @@ class User
             }
         }
         if(!$exists) {
-            $this->friends = $this->friends . "," . $id;
+            if($friends[0] === "") {
+                $this->friends = $this->friends . $id;
+            }else {
+                $this->friends = $this->friends . "," . $id;
+            }
         }
     }
     public function addGroup($id){
-        $this->groups = $this->groups.",".$id;
+        $groups = $this->getGroups(Group::AS_GROUP_IDS);
+        $exists = false;
+        foreach($groups as $group){
+            if($id === $group){
+                $exists = true;
+            }
+        }
+        if(!$exists){
+            if($groups[0] === ""){
+                $this->groups = $this->groups.$id;
+            }
+            else{
+                $this->groups = $this->groups.",".$id;
+            }
+        }
+
     }
     public function addEvent($id){
         $this->events = $this->events.",".$id;
@@ -157,6 +187,24 @@ class User
         }
         $this->friends = $temp_a;
     }
+    public function removeGroup($id){
+        $a = $this->getGroups(Group::AS_GROUP_IDS);
+        $temp_a = '';
+        $firstEntree = true;
+        foreach($a as $t_a){
+            if($t_a != $id) {
+                if($firstEntree){
+                    $temp_a = $t_a;
+                    $firstEntree = false;
+                }else {
+                    $temp_a = $temp_a . "," . $t_a;
+                }
+            }
+        }
+        $this->groups = $temp_a;
+    }
+
+
     public function removeFromGroup($id){
         $a = $this->getGroups(Group::AS_GROUP_IDS);
         $temp_a = '';
@@ -190,6 +238,9 @@ class User
         }
         $this->events = $temp_a;
     }
-
+    public function jsonSerialize(){
+        $vars = get_object_vars($this);
+        return $vars;
+    }
 
  }
