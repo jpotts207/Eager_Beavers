@@ -1,0 +1,82 @@
+html{
+
+}
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family : "Comic Sans MS";
+	/* Added background imagery scaled to user page */
+	background-image: url("images/backgrounds/whiteOnGrey.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: cover;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+}
+listpanel{
+    cursor : pointer;
+}
+
+.beaverList{
+    background-color : lightgrey;
+    margin-left : 5%;
+    margin-right : 5%;
+}
+.beaverLogin{
+    background-color : lightgrey;
+    margin-left : 25%;
+    margin-right : 25%;
+    padding-top : 5%;
+    padding-bottom : 5%;
+}
+.panel-body{
+    background-image: url("images/bar.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: cover;
+}
+.addButton{
+    margin : 45%;
+}
+
+div{
+	/* Set additional padding to stop text from hitting edges */
+	padding-left : 10px;
+	padding-right : 10px;
+	padding-top : 10px;
+	padding-bottom : 10px;
+    border-radius : 5px;
+}
+
+h1 {
+	/* Styling header text for each page to match design */
+	color : #FF9B00;
+	text-shadow : 2px 2px #000000;
+}
+
+.footer{
+	background-image: url("images/bar.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: cover;
+}
+
+
