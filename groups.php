@@ -40,7 +40,7 @@ $id;
 <div class="panel panel-default">
     <div class="panel-body">
         <h1>Groups</h1>
-        <p>View all active groups of friends, you may click on a group for further options.</p>
+        <h5>View all active groups of friends, you may click on a group for further options.</h5>
     </div>
 </div>
 
@@ -171,6 +171,14 @@ echo '<div class="beaverList">',
         </div>
     </div>
     </div>
+</div>
+<div>
+<h6 class = "footer"> Plan It is an group based project taking place in 2018.<br>
+To view licensing related to the project, please 
+<a href="/LICENSE">click here</a>
+, or follow these links to view our 
+<a href=>Privacy Policy</a> and 
+<a href=>Terms of Use</a>.</h6>
 </div>
 <script>
 
