@@ -35,6 +35,7 @@ if(!$authenticated){
     <div class="panel panel-default">
         <div class="panel-body">
             <h1>Friends</h1>
+			<h5>View your active friends list below or select the '+' to add new friends. </h5>
         </div>
     </div>
 <?php
@@ -111,4 +112,12 @@ echo '<div class="beaverList">',
             </form>
         </div>
     </div>
+</div>
+<div>
+<h6 class = "footer"> Plan It is an group based project taking place in 2018.<br>
+To view licensing related to the project, please 
+<a href="/LICENSE">click here</a>
+, or follow these links to view our 
+<a href=>Privacy Policy</a> and 
+<a href=>Terms of Use</a>.</h6>
 </div>
