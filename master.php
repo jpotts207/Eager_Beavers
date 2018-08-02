@@ -25,6 +25,9 @@ $db = new DatabaseContext();
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AtdWg-nCcD8mwIW4rRQaq16bWW2DX71YiNF5pLIy5YdgMWdrAzEVMeIVrLZdS6cS'></script>
         <script src="scripts/scripts.js" type="text/javascript"></script>
+
+
+
     </head>
     <body>
     <?php

@@ -31,9 +31,9 @@ function gotoLogin(){
 }
 
 var map;
-function loadMapScenario() {
+function loadMapScenario(myMap) {
 
-    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+    map = new Microsoft.Maps.Map(document.getElementById(myMap), {
         zoom : 11
     });
 }
@@ -58,11 +58,9 @@ function findAddress(){
     SearchMap(address);
 }
 
-$(document).ready(function(){
-    $("#addEventModal").on("shown.bs.modal", function(event){
-        loadMapScenario();
-    });
 
+//jquery stuff
+$(document).ready(function(){
     $(window).keydown(function(event){
         //alert("here" + event.KeyCode);
         if(event.keyCode == 13){
@@ -70,6 +68,8 @@ $(document).ready(function(){
             return false;
         }
     });
+
+    $('#datePick').multiDatesPicker();
 });
 
 

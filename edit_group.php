@@ -15,6 +15,7 @@ $groupId = $_GET["groupId"];
 $id = $_SESSION["Authenticated"];
 $user = $db->getUser($id);
 $friends = $_GET["friend"];
+$name = $_GET["groupName"];
 
 $group = new Group();
 $group = $db->getGroup($groupId);
@@ -22,6 +23,7 @@ $group->resetMembers();
 foreach($friends as $friend){
     $group->addMember($friend);
 }
+$group->setName($name);
 
 $db->updateGroup($group);
 

@@ -68,8 +68,6 @@ class Group implements \JsonSerializable
                 $this->members = $this->members.",".$id;
             }
         }
-
-
     }
 
     public function removeMember($id){

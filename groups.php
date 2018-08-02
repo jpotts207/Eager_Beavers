@@ -52,7 +52,7 @@ echo '<div class="beaverList">',
                     $groupJSON = json_encode($group);
                     $groupJSON = str_replace('"', '\'', $groupJSON);
                     if($group){
-                        echo '<a class="listpanel" data-toggle="modal" data-target="#editGroupModal" 
+                        echo '<div class="listpanel" data-toggle="modal" data-target="#editGroupModal" 
                             data-group="'.$groupJSON.'">
                                 <div class="row" 
                                 style="margin : 5%; 
@@ -77,7 +77,7 @@ echo '<div class="beaverList">',
                                     }
                                     echo '</p>';
                                 echo '</div> ',
-                        '</div></a>';
+                        '</div></div>';
                     }
                 }
             echo '</div>',
@@ -133,13 +133,14 @@ echo '<div class="beaverList">',
 <div id="editGroupModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
+            <form action="edit_group.php" method="get">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Group Name</h3>
+                <h3 class="modal-title"><input id="groupName" name="groupName" type="text"/></h3>
                 <p>Check/Uncheck the boxes to edit friends in this group.  Should you wish to remove someone, simply uncheck the relevant box.</p>
                 <button id="deleteGroupButton" class="btn btn-danger" >Delete Group</button>
             </div>
-            <form action="edit_group.php" method="get">
+
                 <div class="modal-body">
                     <?php
                     echo '<input id="groupId" name="groupId" style="visibility: hidden" />';
@@ -184,7 +185,8 @@ echo '<div class="beaverList">',
             var friends = group.members;
             var friendsArray = friends.split(",");
 
-            modal.find(".modal-title").text(group.name);
+            //modal.find(".modal-title").text(group.name);
+            modal.find("#groupName").val(group.name);
             modal.find("#groupId").val(group.Id);
 
             //reset checkboxes

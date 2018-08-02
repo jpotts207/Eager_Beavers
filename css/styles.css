@@ -26,7 +26,7 @@ select,
 textarea {
     /*max-width: 280px;*/
 }
-listpanel{
+.listpanel{
     cursor : pointer;
 }
 
@@ -52,6 +52,10 @@ listpanel{
 div{
     border-radius : 5px;
 }
+.modal-footer{
+    text-align : center;
+}
+
 
 
 
