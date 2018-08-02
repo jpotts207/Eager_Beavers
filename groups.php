@@ -172,14 +172,6 @@ echo '<div class="beaverList">',
     </div>
     </div>
 </div>
-<div>
-<h6 class = "footer"> Plan It is an group based project taking place in 2018.<br>
-To view licensing related to the project, please 
-<a href="/LICENSE">click here</a>
-, or follow these links to view our 
-<a href=>Privacy Policy</a> and 
-<a href=>Terms of Use</a>.</h6>
-</div>
 <script>
 
     $(document).ready(function(){

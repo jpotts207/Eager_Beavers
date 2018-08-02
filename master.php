@@ -25,6 +25,7 @@ $db = new DatabaseContext();
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AtdWg-nCcD8mwIW4rRQaq16bWW2DX71YiNF5pLIy5YdgMWdrAzEVMeIVrLZdS6cS'></script>
         <script src="scripts/scripts.js" type="text/javascript"></script>
+		
     </head>
     <body>
     <?php
@@ -36,5 +37,13 @@ $db = new DatabaseContext();
                 include($page_content);
             echo '</div>';
         ?>
+		<div>
+		<h6 class = "footer"> Plan It is an group based project taking place in 2018.<br>
+		To view licensing related to the project, please 
+		<a href="LICENSE.txt" download>click here</a>
+		, or follow these links to view our 
+		<a href=>Privacy Policy</a> and 
+		<a href=>Terms of Use</a>.</h6>
+		</div>
     </body>
 </html>
