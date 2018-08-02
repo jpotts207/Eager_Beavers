@@ -35,6 +35,7 @@ if(!$authenticated){
     <div class="panel panel-default">
         <div class="panel-body">
             <h1>Friends</h1>
+			<h5>View your active friends list below or select the '+' to add new friends. </h5>
         </div>
     </div>
 <?php

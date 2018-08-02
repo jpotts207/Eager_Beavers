@@ -37,8 +37,8 @@ if(!$authenticated){
 <div class="panel panel-default">
     <div class="panel-body">
         <h1>Events</h1>
-        <p>Here you can create and modify events that you've created.</p>
-        <p>To see events that you are invited to or attending, view <a href="#">Invites</a></p>
+        <h5>Here you can create and modify events that you've created.<br\>
+        To see events that you are invited to or attending, view <a href="#">Invites</a></h5>
     </div>
 </div>
 <div class="beaverList">
