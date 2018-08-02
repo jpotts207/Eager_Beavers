@@ -48,8 +48,10 @@ if(isset($_SESSION["Authenticated"])){
                         "<li><a href='?page=account'>Account</a></li>";
                 }
                 else{
-                    echo "<li><a class='nav-link' href='?page=signupPage'>signup</a></li>";
+                    echo "<li><a class='nav-link' href='?page=signupPage'>Signup</a></li>";
+
                 }
+                echo "<li><a class='nav-link' href='?page=about'>About</a></li>";
                 ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
