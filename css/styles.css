@@ -30,7 +30,7 @@ select,
 textarea {
     /*max-width: 280px;*/
 }
-listpanel{
+.listpanel{
     cursor : pointer;
 }
 
@@ -47,7 +47,7 @@ listpanel{
     padding-bottom : 5%;
 }
 .panel-body{
-    background-image: url("../images/bar.png");
+    background-image: url("../images/components/bar.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
 	background-size: cover;
@@ -59,6 +59,9 @@ listpanel{
 div{
     border-radius : 5px;
 }
+.modal-footer{
+    text-align : center;
+}
 
 .footer{
 	position: fixed;
@@ -67,7 +70,7 @@ div{
     width: 100%;
     color: white;
     text-align: center;
-	background-image: url("../images/bar.png");
+	background-image: url("../images/components/bar.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
 	background-size: cover;
@@ -78,3 +81,6 @@ h1 {
 	color : #FF9B00;
 	text-shadow : 2px 2px #000000;
 }
+
+
+

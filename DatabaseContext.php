@@ -177,13 +177,24 @@ class DatabaseContext
             $connection = new PDO($this->dsn, $this->username, $this->password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $statement =  $connection->prepare("INSERT INTO Events (title, location, attendees) 
-                      VALUES (:ename, :loc, :creator )");
+            $statement =  $connection->prepare("INSERT INTO Events (title, location, attendees, from_date, 
+                                                to_date, time, groups, to_time, rsvp, status) 
+                      VALUES (:ename, :loc, :att, :fromDate, :toDate, :tim, :attendingGroup, :toTime, :res, :state )");
             $statement->execute(array(
                     "ename" => $event->getTitle(),
                     "loc" => $event->getLocation(),
-                    "creator"> $id)
+                    "att" => $event->getAttendees(User::AS_PROPERTY),
+                    "fromDate" => $event->getFromDate(),
+                    "toDate" => $event->getToDate(),
+                    "tim" => $event->getTime(),
+                    "attendingGroup" => $event->getGroups(Group::AS_PROPERTY),
+                    "toTime" => $event->getToTime(),
+                    "res" => $event->getRsvp(),
+                    "state" => $event->getStatus()
+                )
             );
+
+            return $connection->lastInsertId();
         }
         catch(PDOException $e){
             print("Error connecting to SQL Server.");
@@ -240,12 +251,19 @@ class DatabaseContext
             $connection = new PDO($this->dsn, $this->username, $this->password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $statement = $connection->prepare("UPDATE Events SET title = ?, location = ?, attendees = ? 
-                                                  WHERE Id = ?");
+            $statement = $connection->prepare("UPDATE Events SET title = ?, location = ?, attendees = ?, 
+                        time = ?, from_date = ?, to_date = ?, groups = ?, to_time = ?, rsvp = ?, status = ? WHERE Id = ?");
             $statement->execute(array(
                 $event->getTitle(),
                 $event->getLocation(),
                 $event->getAttendees(Event::AS_PROPERTY),
+                $event->getTime(),
+                $event->getFromDate(),
+                $event->getToDate(),
+                $event->getGroups(Group::AS_PROPERTY),
+                $event->getToTime(),
+                $event->getRsvp(),
+                $event->getStatus(),
                 $event->getId()
                 )
             );
