@@ -9,7 +9,7 @@
 ?>
 <div class="panel panel-default">
     <div class="panel-body beaver">
-        <h5 style="text-align: center">Plan !t is a meeting time organiser app.</h5>
+        <p style="text-align: center">Plan !t is a meeting time organiser app.</p>
     </div>
 </div>
 

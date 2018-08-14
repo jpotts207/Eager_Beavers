@@ -1,0 +1,22 @@
+.ui-datepicker {
+    width: 80%;
+    height : 100%;
+    padding: .2em .2em 0;
+    display: none;
+    margin : auto;
+}
+tbody{
+    height : 100px;
+}
+.ui-datepicker td {
+    border: 0;
+    padding: 1px;
+    height : 20%;
+}
+.ui-menu .ui-menu-item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* support: IE10, see #8844 */
+    list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+}

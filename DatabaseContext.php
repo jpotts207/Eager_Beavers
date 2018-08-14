@@ -178,8 +178,8 @@ class DatabaseContext
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $statement =  $connection->prepare("INSERT INTO Events (title, location, attendees, from_date, 
-                                                to_date, time, groups, to_time, rsvp, status) 
-                      VALUES (:ename, :loc, :att, :fromDate, :toDate, :tim, :attendingGroup, :toTime, :res, :state )");
+                                                to_date, time, groups, to_time, rsvp, status, invitees) 
+                      VALUES (:ename, :loc, :att, :fromDate, :toDate, :tim, :attendingGroup, :toTime, :res, :state, :invitees )");
             $statement->execute(array(
                     "ename" => $event->getTitle(),
                     "loc" => $event->getLocation(),
@@ -190,7 +190,8 @@ class DatabaseContext
                     "attendingGroup" => $event->getGroups(Group::AS_PROPERTY),
                     "toTime" => $event->getToTime(),
                     "res" => $event->getRsvp(),
-                    "state" => $event->getStatus()
+                    "state" => $event->getStatus(),
+                    "invitees" => $event->getInvitees(USER::AS_PROPERTY)
                 )
             );
 
@@ -226,7 +227,7 @@ class DatabaseContext
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $statement = $connection->prepare("UPDATE Users SET first_name = ?, second_name = ?, friends = ?, 
-                email = ?, password=?, groups=?, events=? WHERE Id = ?");
+                email = ?, password=?, groups=?, events=?, invites=? WHERE Id = ?");
 
             $statement->execute(array(
                 $user->getFirstName(),
@@ -236,6 +237,7 @@ class DatabaseContext
                 $user->getPassword(),
                 $user->getGroups(Group::AS_PROPERTY),
                 $user->getEvents(Event::AS_PROPERTY),
+                $user->getInvites(Event::AS_PROPERTY),
                 $user->getId()
                 )
             );
@@ -252,18 +254,22 @@ class DatabaseContext
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $statement = $connection->prepare("UPDATE Events SET title = ?, location = ?, attendees = ?, 
-                        time = ?, from_date = ?, to_date = ?, groups = ?, to_time = ?, rsvp = ?, status = ? WHERE Id = ?");
+                        time = ?, from_date = ?, to_date = ?, groups = ?, to_time = ?, rsvp = ?, confirmed_attendees = ?,
+                        status = ?, invitees = ?, not_attending = ? WHERE Id = ?");
             $statement->execute(array(
                 $event->getTitle(),
                 $event->getLocation(),
-                $event->getAttendees(Event::AS_PROPERTY),
+                $event->getAttendees(User::AS_PROPERTY),
                 $event->getTime(),
                 $event->getFromDate(),
                 $event->getToDate(),
                 $event->getGroups(Group::AS_PROPERTY),
                 $event->getToTime(),
                 $event->getRsvp(),
+                $event->getConfirmedAttendees(User::AS_PROPERTY),
                 $event->getStatus(),
+                $event->getInvitees(User::AS_PROPERTY),
+                $event->getNonAttending(User::AS_PROPERTY),
                 $event->getId()
                 )
             );

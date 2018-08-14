@@ -40,7 +40,7 @@ $id;
 <div class="panel panel-default">
     <div class="panel-body">
         <h1>Groups</h1>
-        <h5>View all active groups of friends, you may click on a group for further options.</h5>
+        <p>View all active groups of friends, you may click on a group for further options.</p>
     </div>
 </div>
 
