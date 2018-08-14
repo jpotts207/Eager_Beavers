@@ -23,16 +23,19 @@ if(isset($_SESSION["Authenticated"])){
     }
 }
 ?>
-<div class="jumbotron">
-    <h1>Account</h1>
-    <h2>To Be Implemented</h2>
+<div class="panel panel-default">
+	<div class="panel-body">
+		<h1>Account</h1>
+		<h5>All information relating to your account will be dispalyed on this page.</h5>
+	</div>
 </div>
 <?php
 
-    echo '<div id="container" class="row-md-2 form-group">';
-    echo '<p> email: '. $user->getEmail($id).'</p>';
-    echo '<p> First Name : '. $user->getFirstName($id).'</p>';
-    echo '<p> Surname : '. $user->getSecondName($id).'</p>';
+	echo '<div id="container" class="row-md-2 form-group">';
+	echo '<p> email: '. $user->getEmail($id).'</p>';
+	echo '<p> First Name : '. $user->getFirstName($id).'</p>';
+	echo '<p> Surname : '. $user->getSecondName($id).'</p>';
+
 ?>
 <a href="?page=change_password"><button class="btn btn-default">Change Password</button></a>
 </div>

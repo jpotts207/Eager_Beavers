@@ -44,7 +44,7 @@ if(isset($_SESSION["Authenticated"])){
                     echo "<li><a href='?page=events'>Events</a></li>",
                         "<li><a href='?page=friends'>Friends</a></li>",
                         "<li><a href='?page=groups'>Groups</a></li>",
-                        "<li><a href='?page=invites'>Invites</a></li>",
+                        "<li><a href='#'>Invites</a></li>",
                         "<li><a href='?page=account'>Account</a></li>";
                 }
                 else{
