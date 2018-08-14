@@ -20,5 +20,3 @@ $user->removeGroup($groupId);
 $db->updateUser($user);
 
 $db->deleteGroup($groupId);
-
-header("location: index.php?page=groups");

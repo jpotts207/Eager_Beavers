@@ -25,6 +25,7 @@ class User implements \JsonSerializable
     protected $friends;
     protected $groups;
     protected $events;
+    protected $invites;
 
     public function getId(){
         return $this->Id;
@@ -129,23 +130,47 @@ class User implements \JsonSerializable
                 break;
         }
     }
+    public function getInvites($value){
+        switch($value){
+            case Event::AS_EVENTS:
+                $invites = explode(",", $this->invites);
+                $invitesArray = array();
+                $db = new DatabaseContext();
+
+                foreach($invites as $invite){
+                    $invitesArray[] = $db->getEvent($invite);
+                }
+                return $invitesArray;
+                break;
+            case Event::AS_PROPERTY:
+                return $this->invites;
+                break;
+            case Event::AS_EVENT_IDS:
+                return explode(",", $this->invites);
+                break;
+        }
+    }
 
     //friends are stored in the database as comma separated list
     //eg "2,5,16".  Each number is the Id of another User.
     //So we just need to append the end of the friends with "," + $id
     public function addFriend($id){
-        $friends = $this->getFriends(User::AS_USER_IDS);
-        $exists = false;
-        foreach($friends as $friend){
-            if($id === $friend){
-                $exists = true;
+        if ($this->isFriend($id) || $id == $this->getId()){
+            //prevent adding yourself as friend or someone who is already a friend
+        }else {
+            $friends = $this->getFriends(User::AS_USER_IDS);
+            $exists = false;
+            foreach ($friends as $friend) {
+                if ($id === $friend) {
+                    $exists = true;
+                }
             }
-        }
-        if(!$exists) {
-            if($friends[0] === "") {
-                $this->friends = $this->friends . $id;
-            }else {
-                $this->friends = $this->friends . "," . $id;
+            if (!$exists) {
+                if ($friends[0] === "") {
+                    $this->friends = $this->friends . $id;
+                } else {
+                    $this->friends = $this->friends . "," . $id;
+                }
             }
         }
     }
@@ -168,7 +193,38 @@ class User implements \JsonSerializable
 
     }
     public function addEvent($id){
-        $this->events = $this->events.",".$id;
+        $events = $this->getEvents(Event::AS_EVENT_IDS);
+        $exists = false;
+        foreach($events as $event){
+            if($id === $event){
+                $exists = true;
+            }
+        }
+        if(!$exists){
+            if($events[0] === ""){
+                $this->events = $this->events.$id;
+            }
+            else{
+                $this->events = $this->events.",".$id;
+            }
+        }
+    }
+    public function addInvite($id){
+        $invites = $this->getInvites(Event::AS_EVENT_IDS);
+        $exists = false;
+        foreach($invites as $invite){
+            if($id === $invite){
+                $exists = true;
+            }
+        }
+        if(!$exists){
+            if($invites[0] === ""){
+                $this->invites = $this->invites.$id;
+            }
+            else{
+                $this->invites = $this->invites.",".$id;
+            }
+        }
     }
 
     public function removeFriend($id){

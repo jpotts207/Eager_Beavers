@@ -37,13 +37,13 @@ if(!$authenticated){
 <div class="panel panel-default">
     <div class="panel-body">
         <h1>Events</h1>
-        <h5>Here you can create and modify events that you've created.<br\>
-        To see events that you are invited to or attending, view <a href="#">Invites</a></h5>
+        <p>Here you can create and modify events that you've created.</p>
+        <p>To see events that you are invited to or attending, view <a href="#">Invites</a></p>
     </div>
 </div>
 <div class="beaverList">
     <div class="row">
-        <div class="col-sm-8" style="border-right : 1px solid black; border-radius : 0px;">
+        <div class="col-sm-8" style=" border-right : 1px solid black; border-radius : 0px;">
         <?php
             foreach($events as $event){
                 $eventJSON = json_encode($event);
@@ -57,7 +57,7 @@ if(!$authenticated){
                             border: 1px solid black">',
 
                             '<div class="col-sm-3">',
-                                '<img src="images/event.png" alt="users_image"  style="padding : 10%; height : 80%; width: 80%;"/>',
+                                '<img src="images/event.png" alt="event_image"  style="padding : 10%; height : 80%; width: 80%;"/>',
                             '</div>',
 
                             '<div class="col-sm-9">',
@@ -205,14 +205,15 @@ if(!$authenticated){
     </div>
 </div>
 
-<div id="editEventModal" class="modal fade" role="dialog">;
+<div id="editEventModal" class="modal fade" role="dialog">
     <div class="modal-dialog" style="width : 70%;">
         <!-- Modal content-->
-        <form class="form-inline" action="edit_event.php" method="get" >
+
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
+                    <form class="form-inline" action="edit_event.php" method="get" >
                     <div class="form-group">
                         <label for="eventName">Event Name:</label>
                         <input type="text" class="form-control" id="eventName" name="eventName" required>
@@ -237,8 +238,9 @@ if(!$authenticated){
                         <label for="rsvp">RSVP:</label>
                         <input type="date" class="form-control" id="rsvp" name="rsvp" required><span class="glyphicon glyphicon-calendar"/>
                     </div>
-
+                    <input id="id" name="eventid" style="visibility: hidden"/>
                     <p>Alter the options below to adjust the details of this event</p>
+
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -301,20 +303,38 @@ if(!$authenticated){
                             <div id='editMap' style='width: 100%; height: 300px;'></div>
                         </div>
                     </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Update Event</button>
+                    <button type="submit" class="btn btn-primary"">Update Event</button>
+                    </form>
+                    <button type="button" class="btn btn-danger" onclick="changeStatus('cancel')">Cancel Event</button>
+                    <button type="button" class="btn btn-success" onclick="changeStatus('confirm')">Confirm Event</button>
                 </div>
             </div>
-        </form>
+
+
     </div>
 </div>
 
 <script>
+    var modal;
+    function changeStatus(value){
+        var eventId = modal.find("#id").val();
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                window.location.href="index.php?page=events";
+            }
+        };
+        xmlhttp.open("GET", "change_event_status.php?status=" + value + "&event=" + eventId, false);
+        xmlhttp.send();
+    }
+
     $(document).ready(function(){
         $("#editEventModal").on("shown.bs.modal", function(event){
             loadMapScenario("editMap");
-           var modal = $(this);
+           modal = $(this);
            SearchMap(modal.find("#mapSearchBox").val());
         });
         $("#addEventModal").on("shown.bs.modal", function(event){
@@ -335,6 +355,7 @@ if(!$authenticated){
             modal.find("#mapSearchBox").val(planitEvent.location);
             modal.find("#totime").val(planitEvent.to_time);
             modal.find("#rsvp").val(planitEvent.rsvp);
+            modal.find("#id").val(planitEvent.Id);
 
 
             //reset checkboxes

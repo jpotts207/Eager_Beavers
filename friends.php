@@ -35,7 +35,6 @@ if(!$authenticated){
     <div class="panel panel-default">
         <div class="panel-body">
             <h1>Friends</h1>
-			<h5>View your active friends list below or select the '+' to add new friends. </h5>
         </div>
     </div>
 <?php
@@ -80,36 +79,83 @@ echo '<div class="beaverList">',
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="search_friend.php" method="post">
-                    <div class="form-group">
                         <label for="search">Find Friend (via email)</label>
                         <input name="search" id="search" type="text" size ="50"/>
-                        <button type="submit">Search</button>
-                    </div>
-                </form>
+                        <button type="buttn" class="btn btn-default" onclick="findFriend()">Search</button>
+                <div>
+                    <h4 id="title"></h4>
+                </div>
+                <div>
+                    <p id="email"></p>
+                    <p id="name"></p>
+                </div>
             </div>
             <div class="modal-footer">
-                <!--<button type="submit" class="btn btn-default">Add</button>-->
+                <div class="btn-group" style="visibility : hidden">
+                    <?php echo '<button type="button" class="btn btn-success" onclick="addFriend('.$id.')">Add</button>';?>
+                    <button type="button" class="btn btn-danger" onclick="gotoFriends()">Cancel</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<!--edit friend-->
-<div id="editFriendModal" class="modal fade" role="dialog">
+<div id="friendAddedModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
+
+        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" onclick="gotoHome()">&times;</button>
+                <h4 class="modal-title">Friend Added</h4>
             </div>
-            <form action="edit_friend.php" method="get">
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-default">Update</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <p id="confirm"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="gotoFriends()">Ok</button>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    function findFriend(){
+        var email = $("#search").val();
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var friend = JSON.parse(this.responseText);
+                if (!friend){
+                    $(".btn-group").css("visibility", "hidden");
+                    document.getElementById("email").innerText = "";
+                    document.getElementById("name").innerText = "";
+                    document.getElementById("title").innerText="No user could be found with that email";
+                }else{
+                    $(".btn-group").css("visibility", "visible");
+                    document.getElementById("title").innerText = "We found the following user with that email:";
+                    document.getElementById("email").innerText = friend.email;
+                    var full_name = friend.first_name + " " + friend.second_name;
+                    document.getElementById("name").innerText = full_name;
+                }
+            }
+        };
+        xmlhttp.open("GET", "search_friend.php?email=" + email, true);
+        xmlhttp.send();
+    }
+
+    function addFriend(userId){
+        var email = $("#search").val();
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var friend = JSON.parse(this.responseText);
+                $("#addFriendModal").modal("toggle");
+                $("#friendAddedModal").modal("toggle");
+                $("#friendAddedModal").modal().find("#confirm").text("We will notify " + friend.first_name + " that they have a new friend! awww");
+            }
+        };
+        xmlhttp.open("GET", "add_friend.php?email=" + email + "&user=" + userId, false);
+        xmlhttp.send();
+    }
+
+</script>
