@@ -44,14 +44,44 @@ $event->setTime($time);
 $event->setLocation($location);
 $event->setRsvp($rsvp);
 $event->setToTime($totime);
-//$event->addInvitee($id);
 
+foreach($user->getFriends(User::AS_USER_IDS) as $userFriend){
+    if(!in_array($userFriend, $friends)){
+        $event->removeAttendee($userFriend);
+        $event->removeInvitee($userFriend);
+        $event->removeConfirmedAttendee($userFriend);
+        $event->removeNonAttendee($userFriend);
+
+        $friend = $db->getUser($userFriend);
+        $friend->removeFromEvent($event->getId());
+        $db->updateUser($friend);
+    }
+}
+foreach($event->getInvitees(User::AS_USER_IDS) as $invitee){
+    //don't remove the host (current user = $id)
+    if($invitee != $id) {
+        if (!in_array($invitee, $friends)) {
+            $event->removeAttendee($invitee);
+            $event->removeInvitee($invitee);
+            $event->removeConfirmedAttendee($invitee);
+            $event->removeNonAttendee($invitee);
+
+            $friend = $db->getUser($invitee);
+            $friend->removeFromEvent($event->getId());
+            $db->updateUser($invitee);
+        }
+    }
+}
+foreach($user->getGroups(Group::AS_GROUP_IDS) as $group){
+    if(!in_array($group, $groups)){
+        $event->removeGroup($group);
+    }
+}
 
 foreach($friends as $friend){
     $event->addAttendee($friend);
     $event->addInvitee($friend);
 
-    //notify attendee
     $selectedFriend = $db->getUser($friend);
     $selectedFriend->addInvite($eventId);
     $db->updateUser($selectedFriend);
@@ -66,7 +96,7 @@ foreach($friends as $friend){
     }
 
     if(!$alreadyAttending){
-        //Mailer::sendEventNotification($selectedFriend, $event);
+        Mailer::sendEventNotification($selectedFriend, $event);
     }
 }
 
@@ -79,7 +109,7 @@ foreach($groups as $group){
     //we need to make sure this group isn't already invited before sending notification to it's members
     $alreadyAttendingGroups = $event->getAttendees(Group::AS_GROUP_IDS);
     $alreadyAttending = false;
-    foreach($alreadyAttendingGroups as $attendingFriend){
+    foreach($alreadyAttendingGroups as $attendingGroup){
         if($group == $attendingGroup){
             $alreadyAttending = true;
         }
@@ -93,7 +123,7 @@ foreach($groups as $group){
             $selectedMember = $db->getUser($member);
             $selectedMember->addInvite($eventId);
             $db->updateUser($selectedMember);
-            //Mailer::sendEventNotification($selectedMember, $event);
+            Mailer::sendEventNotification($selectedMember, $event);
         }
     }
 }

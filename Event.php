@@ -296,6 +296,22 @@ class Event implements \JsonSerializable
         }
         $this->attendees = $temp_a;
     }
+    public function removeInvitee($id){
+        $a = $this->getInvitees(User::AS_USER_IDS);
+        $temp_a = '';
+        $firstEntree = true;
+        foreach($a as $t_a){
+            if($t_a != $id) {
+                if($firstEntree){
+                    $temp_a = $t_a;
+                    $firstEntree = false;
+                }else {
+                    $temp_a = $temp_a . "," . $t_a;
+                }
+            }
+        }
+        $this->invitees = $temp_a;
+    }
     public function removeConfirmedAttendee($id){
         $a = $this->getConfirmedAttendees(User::AS_USER_IDS);
         $temp_a = '';
@@ -370,10 +386,7 @@ class Event implements \JsonSerializable
         return $isNotAttending;
     }
 
-    public function resetFriendsGroups(){
-        $this->attendees='';
-        $this->groups='';
-    }
+
     public function jsonSerialize(){
         $vars = get_object_vars($this);
         return $vars;

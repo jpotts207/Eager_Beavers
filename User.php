@@ -279,7 +279,7 @@ class User implements \JsonSerializable
     }
 
     public function removeFromEvent($id){
-        $a = $this->getEvents(Event::AS_EVENT_IDS);
+        $a = $this->getInvites(Event::AS_EVENT_IDS);
         $temp_a = '';
         $firstEntree = true;
         foreach($a as $t_a){
@@ -292,8 +292,9 @@ class User implements \JsonSerializable
                 }
             }
         }
-        $this->events = $temp_a;
+        $this->invites = $temp_a;
     }
+
     public function jsonSerialize(){
         $vars = get_object_vars($this);
         return $vars;
